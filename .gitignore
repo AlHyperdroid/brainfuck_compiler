@@ -4,3 +4,11 @@
 *.ipr
 *.iws
 /.idea/
+# Gradle files
+.gradle/
+build/
+.idea/gradle.xml
+.idea/assetWizardSettings.xml
+.idea/dictionaries
+.idea/libraries
+.idea/jarRepositories.xml
