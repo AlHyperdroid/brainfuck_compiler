@@ -6,6 +6,7 @@ public class Interpreter {
     private final char[] memory_size;
     private final List<Syntax> syntax;
     private int index, current, count;
+    private final StringBuilder word = new StringBuilder();
 
     Interpreter(List<Syntax> syntax) {
         memory_size = new char[MEM];
@@ -32,15 +33,28 @@ public class Interpreter {
         return syntax;
     }
 
-    private void nextCell() { current++; }
+    private void nextCell() {
+        current++;
+    }
 
-    private void previousCell() { current--; }
+    private void previousCell() {
+        current--;
+    }
 
-    private void increment() { memory_size[current]++; }
+    private void increment() {
+        memory_size[current]++;
+    }
 
-    private void decrement() { memory_size[current]--; }
+    private void decrement() {
+        memory_size[current]--;
+    }
 
-    private void output() { System.out.print(memory_size[current]); }
+    private void output() {
+        char letter = memory_size[current];
+        System.out.print(letter);
+        word.append(letter);
+
+    }
 
     private void firstBracket() {
         int loop = count + 1;
@@ -64,7 +78,8 @@ public class Interpreter {
             case LAST_BRACKET -> count--;
         }
     }
-    public void compile() {
+
+    public String compile() {
 
         for (index = 0; index < syntax.size(); index++) {
             switch (syntax.get(index)) {
@@ -87,6 +102,7 @@ public class Interpreter {
                 }
             }
         }
+        return word.toString();
     }
 }
 
