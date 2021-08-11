@@ -27,7 +27,7 @@ public class Interpreter {
                 default -> null;
             };
             if (synt == null)
-                continue;
+                break;
             syntax.add(synt);
         }
         return syntax;

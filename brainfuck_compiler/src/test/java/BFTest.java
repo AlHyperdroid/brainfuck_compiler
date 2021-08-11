@@ -9,8 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BFTest {
     ICommand cmp = new Compiler();
-    String fullCode = "++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.\n" +
-            "------.--------.>+.>.";
+    String fullCode = "++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.";
 
     @Test
     void compileHello() {
@@ -20,7 +19,7 @@ public class BFTest {
 
     @Test
     void checkInterpreter() {
-        List<Syntax> list = new ArrayList<Syntax>();
+        List<Syntax> list = new ArrayList<>();
         list.add(Syntax.INC);
         list.add(Syntax.INC);
         list.add(Syntax.INC);
@@ -33,4 +32,5 @@ public class BFTest {
     void checkInterpreterTwo() {
         Assertions.assertEquals("[INC, FIRST_BRACKET, DEC, LAST_BRACKET, INC, NEXT, NEXT, OUT]", Interpreter.adapt("+[-]+>>.").toString());
     }
+
 }
