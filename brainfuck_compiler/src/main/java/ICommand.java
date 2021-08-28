@@ -1,3 +1,3 @@
 public interface ICommand {
-    String compiler(String fullCode);
+    void execute(Memory memory);
 }

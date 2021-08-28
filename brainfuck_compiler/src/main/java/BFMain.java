@@ -1,9 +1,13 @@
-public class BFMain {
+import java.util.List;
 
+public class BFMain {
     public static void main(String[] args) {
-        ICommand cmp = new Compiler();
-        cmp.compiler("++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.");
-        cmp.compiler("++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.——.——--.>+.>.");
-        cmp.compiler("++++++++++[>+>+++>+++++++>++++++++++<<<<-]>>>++++++++++++++.>+.++++++++++++++.+.");
+        String brainfuckCode = "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.";
+        Memory memory = new Memory();
+        Compiler compiler = new Compiler();
+        List<ICommand> commands = compiler.interpreter(brainfuckCode);
+        for (ICommand command : commands) {
+            command.execute(memory);
+        }
     }
 }
