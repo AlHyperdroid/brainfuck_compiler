@@ -1,9 +1,10 @@
 plugins {
     id("java-library")
 }
-compileJava{
-    sourceCompatibility('14')
-    targetCompatibility('14')
+java{
+    toolchain{
+        languageVersion = JavaLanguageVersion.of(14)
+    }
 }
 
 group 'org.example'
