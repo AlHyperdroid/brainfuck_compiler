@@ -1,4 +1,4 @@
-public class InvalidOperation implements ICommand{
+public class InvalidOperation implements ICommand {
 
     @Override
     public void execute(Memory memory) {

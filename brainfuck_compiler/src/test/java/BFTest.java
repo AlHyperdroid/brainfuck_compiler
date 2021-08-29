@@ -1,34 +1,39 @@
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import java.util.ArrayList;
+
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BFTest {
-    ICommand cmp = new Compiler();
-    String fullCode = "++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.";
+    String brainfuckCode = "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.";
+    CommandInterpreter commandInterpreter = new CommandInterpreter();
+    Memory memory = new Memory();
 
     @Test
     void compileHello() {
-        String result = cmp.compiler(fullCode);
+        List<ICommand> innerLoopCommands = commandInterpreter.interpreter(brainfuckCode);
+        String result = Compiler.run(innerLoopCommands);
         assertEquals("Hello World!\n", result);
     }
 
     @Test
-    void checkInterpreter() {
-        List<Syntax> list = new ArrayList<>();
-        list.add(Syntax.INC);
-        list.add(Syntax.INC);
-        list.add(Syntax.INC);
-        list.add(Syntax.INC);
-        list.add(Syntax.INC);
-        Assertions.assertIterableEquals(list, Interpreter.adapt("+++++"));
+    public void incrementTest() {
+        memory.increment();
+        memory.increment();
+        memory.increment();
 
+        int getDataOfCurrentCell = memory.getCurrentCell();
+        assertEquals(3, getDataOfCurrentCell);
     }
+
     @Test
-    void checkInterpreterTwo() {
-        Assertions.assertEquals("[INC, FIRST_BRACKET, DEC, LAST_BRACKET, INC, NEXT, NEXT, OUT]", Interpreter.adapt("+[-]+>>.").toString());
-    }
+    public void incrementDecrementTest() {
+        memory.increment();
+        memory.decrement();
+        memory.increment();
+        memory.decrement();
 
+        int getDataOfCurrentCell = memory.getCurrentCell();
+        assertEquals(0, getDataOfCurrentCell);
+    }
 }

@@ -7,13 +7,11 @@ public class Loop implements ICommand {
         this.innerCommands = innerCommands;
     }
 
-    public void execute(Memory memory){
-    while (memory.getCurrentCell() > 0){
-    for (ICommand command : innerCommands){
-        command.execute(memory);
-    }
-
-}
-
+    public void execute(Memory memory) {
+        while (memory.getCurrentCell() > 0) {
+            for (ICommand command : innerCommands) {
+                command.execute(memory);
+            }
+        }
     }
 }
